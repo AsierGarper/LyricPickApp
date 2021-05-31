@@ -1,0 +1,72 @@
+/*--------------------------------------------Seccion Header---------------------------------*/
+
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+nav a {
+    padding: 20px;
+    margin: auto;
+    background-color: aquamarine;
+    border-radius: 20%;
+    border: solid black.5px;
+    margin-left: 1em;
+}
+
+img {
+    align-items: center;
+    width: 200px;
+}
+
+/*--------------------------------------------Seccion Main---------------------------------*/
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.songResult {
+
+    margin: 40px;
+    width: 400px;
+}
+
+.songInfo {
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.songResult p {
+    margin: 20px;
+}
+
+.previewBottomDiv {
+    display: flex;
+    margin: 10px;
+}
+
+/*--------------------------------------------Seccion Footer---------------------------------*/
+
+footer {
+    background-color: lightgray;
+    opacity: .5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 15px;
+    text-align: center;
+}
