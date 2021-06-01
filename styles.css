@@ -36,6 +36,19 @@ main {
     flex-wrap: wrap;
 }
 
+.artistSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: brown;
+    padding: 20px;
+    margin: 20px;
+}
+
+.artistSection img {
+    width: 400px;
+}
+
 .songResult {
 
     margin: 40px;
@@ -50,13 +63,18 @@ main {
     margin: 10px;
 }
 
-.songResult p {
+.lyrics {
     margin: 20px;
+}
+
+.album {
+    margin: 0px;
 }
 
 .previewBottomDiv {
     display: flex;
-    margin: 10px;
+    flex-direction: column;
+    padding-bottom: 20px;
 }
 
 /*--------------------------------------------Seccion Footer---------------------------------*/
