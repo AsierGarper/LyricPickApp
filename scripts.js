@@ -1,5 +1,5 @@
         /*Para implementar a futuro, voy a crear funciones, que llame a cada cosa. El el formulario, el usuario podra introducir, artista, y buscar todas las canciones del artista (funcion buscarArtista). Luego, si quiere buscar artista, y que contenga X palabra en su canciones, funcion buscaArtistaPalabras, etc. Cada vez que se envie informacion, en base a la que se envie, llamar a una funcion u otra.*/
-        
+
         document.querySelector("#searchImput").addEventListener("click", function (e) {
             e.preventDefault(); //Esto es para evitar que la pagina recarge por defecto
             let pickedArtist = (document.querySelector("#artistField").value).replace(" ", "_"); //Metemos el replace, para sustituir espacios por barras bajas
@@ -8,38 +8,50 @@
             .then(function(response1){
                 console.log(response1)
                 let artistData = response1.data.data
+                let artist = {artistName :artistData[0].name, artistPicture : artistData[0].picture_big, artistNbAlbum : artistData[0].nb_album, artistNbFan :artistData[0].nb_fan, songList:[] }
                 //De momento, he decido mostrar unicamente el primer resultado (posicion [0] en el array de artistData), a futuro dejare selecionar entre los distintos artistas encontrados con el nombre de artista introducido.)
-                 document.querySelector(".artistSection").innerHTML += `<h1 class="artistTitle">${artistData[0].name}</h1>
-                                                                        <img src="${artistData[0].picture_big}" alt="">
-                                                                        <p>Artist's albums: ${artistData[0].nb_album}</p>
-                                                                        <p>Artist's fans: ${artistData[0].nb_fan}</p>`
+                
+                //  
                 
                 //Una vez conseguimos el artista principal que busca el usuario (artistData[0].name), realizamos una nueva llamada a la api, pidiendo su top canciones:
                 axios.get(`https://api.deezer.com/search/track?q=${artistData[0].name}`)
-                // axios.get(`https://api.deezer.com/artist/${artistData[0].id}/top`)
                 .then(function(response2){
                     console.log(response2);
                     let trackData = response2.data.data
                     trackData.forEach(trackElement => {
                         if (trackElement.artist.id == artistData[0].id){
+                            let song = {songPicture : trackElement.album.cover_medium, songTitle : trackElement.title_short, songAlbum : trackElement.album.title, songPreview : trackElement.preview}
+                            artist.songList.push(song);
                             console.log("Cumpliendose el if, el foreach del array de trackData da lo siguiente:")
                             console.log(trackElement)
                             //Si el id del artista de response1 coincide con el id del artista del track recibido de response2, muestro las canciones. Esto es para evitar poner canciones de otros artistas que contengan el nombre introducido. 
-                            document.querySelector(".songInfo").innerHTML += `<img src="${trackElement.album.cover_medium}" alt="imagenDemo">
-                                                                                <h3 class="title">${trackElement.title_short}</h3>
-                                                                                <h4 class="album"><i>${trackElement.album.title}</i></h4>
-                                                                                <p class="lyrics"></p>
-                                                                            <div class="previewBottomDiv">
-                                                                            <p>Song preview:</p>
-                                                                            <audio controls>
-                                                                                <source src="${trackElement.preview}" type="audio/mpeg">
-                                                                                Your browser does not support the audio element.
-                                                                            </audio>
-                                                                            </div>`
-                        }                  
+                            
+                        } 
+                        
+                        });
+                        document.querySelector(".artistSection").innerHTML += `<h1 class="artistTitle">${artist.artistName}</h1>
+                        <img src="${artist.artistPicture}" alt="">
+                        <p>Artist's albums: ${artist.artistNbAlbum}</p>
+                        <p>Artist's fans: ${artist.artistNbFan}</p>`
+
+                            artist.songList.forEach(songListElement => {
+                            document.querySelector(".songInfo").innerHTML += `<img src="${songListElement["songPicture"]}" alt="imagenDemo">
+                                                <h3 class="title">${songListElement["songTitle"]}</h3>
+                                                <h4 class="album"><i>${songListElement["songAlbum"]}</i></h4>
+                                                <p class="lyrics"></p>
+                                                <div class="previewBottomDiv">
+                                                <p>Song preview:</p>
+                                                <audio controls>
+                                                    <source src="${songListElement["songPreview"]}" type="audio/mpeg">
+                                                    Your browser does not support the audio element.
+                                                </audio>
+                                                </div>`                
                     });
                     })
                 })
+
+                console.log("Esta es tu lista de 'artist', donde guardas todo. Es como tu primera API offline")
+                    console.log(artist)
             .catch(function (error){
                 console.log(error);
             });
