@@ -7,15 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lyric Pick App</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <body>
     <header>
         <img src="./logo1.gif" alt="logo">
+
+        <div class="elementosSidebar">
+            <div id="mySidebar" class="sidebar">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#">Favourites</a>
+                <a href="#">Sign In</a>
+                <a href="#">What we do</a>
+            </div>
+
+            <div id="main">
+                <button class="openbtn" onclick="openNav()">&#9776; </button>
+            </div>
+        </div>
+
+
         <nav>
-            <a href="">Favoritos</a>
-            <a href="">Iniciar sesión</a>
-            <a href="">Qué es Lyric Pick App</a>
+            <a href="">Favourites</a>
+            <a href="">Sign In</a>
+            <a href="">What we do</a>
         </nav>
     </header>
 
@@ -41,10 +58,11 @@
         <section class="songSection">
             <div class="songResult">
                 <div class="songInfo">
-                    <!-- <img src="./imagenDemo.jpg" alt="imagenDemo">
+                    <img src="./imagenDemo.jpg" alt="imagenDemo">
                     <h3 class="title">Titulo Cancion</h3>
                     <h4 class="album"><i>Album</i></h4>
-                    <p class="lyrics">Lorem fistrum ese que llega no te digo trigo por no llamarte Rodrigor llevame al
+                    <p class="lyrics">Lorem fistrum ese que llega no te digo trigo por no llamarte Rodrigor llevame
+                        al
                         Va usté muy cargadoo al ataquerl diodeno no puedor a wan no te digo trigo por no llamarte
                         Rodrigor
                         te voy a borrar el cerito la caidita caballo blanco caballo negroorl de la pradera a peich.
@@ -55,17 +73,21 @@
                         caidita
                         quietooor. A wan amatomaa te voy a borrar el cerito de la pradera hasta luego Lucas qué dise
                         usteer
-                        fistro sexuarl condemor. Diodenoo torpedo a gramenawer benemeritaar a wan. Lorem fistrum ese que
-                        llega no te digo trigo por no llamarte Rodrigor llevame al sircoo se calle ustée. Amatomaa jarl
+                        fistro sexuarl condemor. Diodenoo torpedo a gramenawer benemeritaar a wan. Lorem fistrum ese
+                        que
+                        llega no te digo trigo por no llamarte Rodrigor llevame al sircoo se calle ustée. Amatomaa
+                        jarl
                         va</p>
-
+                    <div class="favIcon">
+                        <i class="fas fa-heart heartIcon" style="color: grey;"></i>
+                    </div>
                     <div class="previewBottomDiv">
                         <p>Song preview:</p>
                         <audio controls>
-                            <source src="horse.mp3" type="audio/mpeg">
+                            <source src="" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 

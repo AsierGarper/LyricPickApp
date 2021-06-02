@@ -4,7 +4,6 @@ body {
 
 /*--------------------------------------------Seccion Header---------------------------------*/
 
-
 header {
     display: flex;
     align-items: center;
@@ -13,24 +12,83 @@ header {
 }
 
 nav {
-    display: flex;
-    justify-content: flex-end;
-
-}
-
-nav a {
-    padding: 20px;
-    margin: auto;
-    background-color: aquamarine;
-    border-radius: 20%;
-    border: solid black.5px;
-    margin-left: 1em;
+    display: none;
 }
 
 img {
     align-items: center;
     width: 200px;
 }
+
+/*----------------------------------------- The sidebar menu ----------------------------------------------------*/
+.sidebar {
+    height: 100%;
+    /* 100% Full-height */
+    width: 0;
+    /* 0 width - change this with JavaScript */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Stay on top */
+    top: 0;
+    right: 0;
+    background-color: #f1f1f1;
+    /* Black*/
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    padding-top: 60px;
+    /* Place content 60px from the top */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidebar */
+    border: solid black 1px;
+}
+
+/* The sidebar links */
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* The button used to open the sidebar */
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    color: black;
+    padding: 10px 15px;
+    border: solid black 2px;
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    /* If you want a transition effect */
+    padding: 20px;
+}
+
+
 
 /*--------------------------------------------Seccion Main---------------------------------*/
 main {
@@ -68,6 +126,7 @@ main {
     border: solid black 2px;
 }
 
+
 .lyrics {
     margin: 20px;
 }
@@ -82,6 +141,21 @@ main {
     padding-bottom: 20px;
 }
 
+/*-------------------------------------------Icono Favoritos (Corazon)-----------------------------------*/
+
+.favIcon {
+    margin: 0 auto;
+    position: relative;
+}
+
+.heartIcon {
+    padding: 10px 12px 8px;
+    background: #fff;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+
 /*--------------------------------------------Seccion Footer---------------------------------*/
 
 footer {
@@ -92,4 +166,27 @@ footer {
     align-items: center;
     font-size: 15px;
     text-align: center;
+}
+
+
+/*-------------------------------------------------------------Media Querys para version escritorio*/
+
+@media (min-width: 767px) {
+    .elementosSidebar {
+        display: none;
+    }
+
+    nav {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    nav a {
+        padding: 20px;
+        margin: auto;
+        background-color: aquamarine;
+        border-radius: 20%;
+        border: solid black.5px;
+        margin-left: 1em;
+    }
 }
