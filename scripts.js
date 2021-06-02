@@ -13,7 +13,7 @@ document.querySelector("#searchImput").addEventListener("click", function (e) {
         
         //  
         document.querySelector(".artistSection").innerHTML += `<h1 class="artistTitle">${artist.artistName}</h1>
-                <img src="${artist.artistPicture}" alt="">
+                <img class="artistPicture" src="${artist.artistPicture}" alt="">
                 <p>Artist's albums: ${artist.artistNbAlbum}</p>
                 <p>Artist's fans: ${artist.artistNbFan}</p>`
         //Una vez conseguimos el artista principal que busca el usuario (artistData[0].name), realizamos una nueva llamada a la api, pidiendo su top canciones:
@@ -37,8 +37,8 @@ document.querySelector("#searchImput").addEventListener("click", function (e) {
                         let songsMXM = response3.data.message.body.track_list
                         songsMXM.forEach(songsMXMElement => {
                         if (songsMXMElement.track.track_name == song.songTitle){
-                            console.log("Esta cancion coincide de Deezer con MusicXMatch")
-                            console.log(songsMXMElement.track.track_name)
+                            // console.log("Esta cancion coincide de Deezer con MusicXMatch")
+                            // console.log(songsMXMElement.track.track_name)
                             axios.get(`http://api.musixmatch.com/ws/1.1/track.lyrics.get?apikey=9a02741f06fec2008254115a0846b094&track_id=${songsMXMElement.track.track_id}`)
                             .then(function(response4){
                                 // console.log("Esto da response4:")
@@ -46,26 +46,37 @@ document.querySelector("#searchImput").addEventListener("click", function (e) {
                                 song.songLyrics = response4.data.message.body.lyrics.lyrics_body; //Y aqui, metemos en nuestra lista de songs, los lyrics de cada una.
                                 //Debido a la cantidad de peticiones a API mediante Axios, y por diferentes tiempos de carga, la unica forma de cargar la letra de las canciones es mediante un funcion, llamandola cuando todas las peticiones API se hayan realizado y el cuerpo de la cancion (Titulo, album, letra, y sonidos) esten guardados en songList.
                                paintInHTMLyricsSong(song);
+
+                               //Ahora que tenemos nuestros div SongList creado, con todas las canciones de la busqueda cargadas, vamos a darle funcionalidad al boton de favoritos. 
                                document.querySelectorAll(".heartIcon").forEach(function(favButton){
                                 favButton.addEventListener("click", function(){
                                     let songInfoClassPosition = this.parentNode.parentNode;
                                     console.log("Aqui esta el node")
                                     console.log(this.parentNode.parentNode)
                                     let imagenCancion = songInfoClassPosition.querySelector("img").src;
-                                    console.log(songInfoClassPosition.querySelector("img").src)
-                                    //Aqui recoger los datos en el objeto favSongObject
-                                    let favSongObject = {imagen : imagenCancion}
+                                    let tituloCancion = songInfoClassPosition.querySelector("h3").innerHTML;
+                                    let tituloAlbumCancion = songInfoClassPosition.querySelector("h4").innerHTML;
+                                    let letraCancion = songInfoClassPosition.querySelector("p").innerHTML;
+                                    let sonidoCancion = songInfoClassPosition.querySelector("source").src;
+                                    console.log(songInfoClassPosition.querySelector("source").src);
+                                    console.log(songInfoClassPosition.querySelector("p").innerHTML);
+                                    //Aqui recoger los datos en el objeto favSongObject (FALTA METER TODOS LOS OBJETOS)
+                                    let favSongObject = {image : imagenCancion, song: tituloCancion, album : tituloAlbumCancion, lyrics: letraCancion, soundPreview : sonidoCancion }
                                     if(!localStorage.getItem("favList")){
+                                        //Si el objeto elegido (la cancion elegida) no esta guardada en favoritos, se aniade a la lista de favoritos.
                                         favSongObject = JSON.stringify([favSongObject]);
                                         localStorage.setItem("favList", favSongObject)
                                     }
                                     else{
-                                        let localStorageFavSongObject = localStorage.getItem("favList")
+                                        //En cambio, si el objeto YA ESTA GUARDADO en favoritos, debemos primero eliminalo de la lista de favoritos.
+                                        let localStorageFavSongObject = localStorage.getItem("favList");
                                         localStorageFavSongObject = JSON.parse(localStorageFavSongObject)
+                                        //Establecemos la posicion del array en -1, para despues, con el foreach, ir recorriendo el objeto por sus posiciones (0, 1, 2, etc).
                                         let position = -1;
                                         localStorageFavSongObject.forEach((element, index) => {
-                                            if(element.imagen == favSongObject.imagen){
-                                                position = index;
+                                            //Si existe la cancion
+                                            if(element.song == favSongObject.song){
+                                                position = index; //la posicion de ese objeto pasa a ser el index con el que entra
                                             }
                                         });
                                         if(position==-1){
@@ -75,6 +86,7 @@ document.querySelector("#searchImput").addEventListener("click", function (e) {
                                             localStorage.setItem("favList", localStorageFavSongObject)
                                         }
                                         else{
+                                            //Utilizamos la funcion 'splice', que funciona de la siguiente forma (array.splice(index, howmany, item1, ....., itemX)), para 
                                             localStorageFavSongObject.splice(position, 1)
                                             localStorageFavSongObject = JSON.stringify(localStorageFavSongObject);
                                             localStorage.setItem("favList", localStorageFavSongObject)
@@ -85,7 +97,7 @@ document.querySelector("#searchImput").addEventListener("click", function (e) {
                             })
                         }
                         else{
-                            console.log("No coincide cancion")
+                            // console.log("No coincide cancion")
                             song.songLyrics = 'No existen letras'
                         }
                         
@@ -113,8 +125,9 @@ document.querySelector("#searchImput").addEventListener("click", function (e) {
     
 
     function paintInHTMLyricsSong(song){
-                document.querySelector(".songInfo").innerHTML += `<div>
-                <img src="${song["songPicture"]}" alt="imagenDemo">
+                document.querySelector(".songInfo").innerHTML += `<hr>
+                                    <div>
+                                    <img class="songPicture" src="${song["songPicture"]}" alt="imagenDemo">
                                     <h3 class="title">${song["songTitle"]}</h3>
                                     <h4 class="album"><i>${song["songAlbum"]}</i></h4>
                                     <p class="lyrics">${song.songLyrics}</p>
