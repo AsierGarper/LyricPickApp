@@ -4,6 +4,9 @@ document.querySelector("#searchImput").addEventListener("click", function (e) {
     e.preventDefault(); //Esto es para evitar que la pagina recarge por defecto
     let pickedArtist = (document.querySelector("#artistField").value).replace(" ", "_"); //Metemos el replace, para sustituir espacios por barras bajas
     // console.log(pickedArtist);
+    document.querySelector(".artistSection").innerHTML = "";
+    document.querySelector(".songInfo").innerHTML = "";
+
     axios.get(`https://api.deezer.com/search/artist?q=${pickedArtist}`)
     .then(function(response1){
         // console.log(response1)
@@ -29,7 +32,7 @@ document.querySelector("#searchImput").addEventListener("click", function (e) {
                     // console.log("Cumpliendose el if, el foreach del array de trackData da lo siguiente:")
                     // console.log(trackElement)
 
-                    //-------------------Ahora voy a llamar a MusicXMatch
+                    //-------------------Ahora voy a llamar a MusicXMatch------------------------------------------------------------------------
                     axios.get(`http://api.musixmatch.com/ws/1.1/track.search?q_artist=${artist.artistName}}&page_size=10&page=1&s_track_rating=desc&apikey=9a02741f06fec2008254115a0846b094`)
                     .then(function(response3){
                         // console.log("Esto da el response3")
@@ -43,7 +46,8 @@ document.querySelector("#searchImput").addEventListener("click", function (e) {
                             .then(function(response4){
                                 // console.log("Esto da response4:")
                                 // console.log(response4)
-                                song.songLyrics = response4.data.message.body.lyrics.lyrics_body; //Y aqui, metemos en nuestra lista de songs, los lyrics de cada una.
+                                song.songLyrics = response4.data.message.body.lyrics.lyrics_body.replaceAll(/\n/ig, "<br>")
+                                song.songLyrics = song.songLyrics.replace("******* This Lyrics is NOT for Commercial use *******<br>(1409621817784)", "") //Y aqui, metemos en nuestra lista de songs, los lyrics de cada una. Hay que hacer un pequenio replace, ya que la api trae \n para los saltos de linea, y necesitamos <br> cuando lo escriba en HTML.
                                 //Debido a la cantidad de peticiones a API mediante Axios, y por diferentes tiempos de carga, la unica forma de cargar la letra de las canciones es mediante un funcion, llamandola cuando todas las peticiones API se hayan realizado y el cuerpo de la cancion (Titulo, album, letra, y sonidos) esten guardados en songList.
                                paintInHTMLyricsSong(song);
 
@@ -177,6 +181,9 @@ function favouritesFunction(song){
         }
     // })
 }
+
+//-----------------------------------------Funcion crear favoritos ------------------------------------------------------
+
 
 
 

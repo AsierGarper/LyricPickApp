@@ -18,7 +18,7 @@
         <div class="elementosSidebar">
             <div id="mySidebar" class="sidebar">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="favourites.html">Favourites</a>
+                <a href="index.html">Home</a>
                 <a href="#">Sign In</a>
                 <a href="#">What we do</a>
             </div>
@@ -30,43 +30,23 @@
 
 
         <nav>
-            <a href="./favourites.html">Favourites</a>
+            <a href="index.html">Home</a>
             <a href="">Sign In</a>
             <a href="">What we do</a>
         </nav>
     </header>
 
     <main>
-        <section class="formSection">
-            <div class="lyricsPicker">
-                <!-- <h4>Search:</h4> -->
-                <!-- <form action="">
-                    <label for="artistField">Artist:</label><br>
-                    <input type="text" id="artistField"><br>
-                    <button id="searchImput">Pick your song</button>
-                </form> -->
-                <form action="">
-                    <!-- <label for="artistField">Find your artist:</label> -->
-                    <img src="./FormTitle.jpg" alt="">
-                    <input type="text" id="artistField" name="artistName" placeholder="Type your artist name...">
-                    <input type="searchImput" id="searchImput" value="Search">
-                    <!-- <button id="searchImput">Pick your song</button> -->
-                </form>
-            </div>
+
+        <section class="favouriteTitleSection">
+            <!-- <h1><b>Favourite List</b></h1> -->
+            <img src="./FavouriteTitle.jpg" alt="">
         </section>
-
-
-
-        <section class="artistSection">
-            <!-- <h1 class="artistTitle">Prueba Band</h1>
-            <img src="./imagenDemo.jpg" alt="">
-            <p>Artist's albums: </p>
-            <p>Artist's fans: </p> -->
-        </section>
+        <hr style="width:100%">
 
         <section class="songSection">
             <div class="songResult">
-                <div class="songInfo">
+                <div class="favSongInfo">
                     <div>
                         <!-- <img class="artistPicture" src="./imagenDemo.jpg" alt="imagenDemo">
                         <h3 class="title">Titulo Cancion</h3>
@@ -109,13 +89,15 @@
     </main>
 
     <footer>
-        <p><i>Created by <b>Asier García Pérez</b> . Bootsted by <b>Deezer API</b> and <b>MusicXMatch API</b>. More
-                proyects in: <span><a href="https://github.com/AsierGarper">Github link. </a></span></i>If you want more
-            apps like
+        <p><i>Created by <b>Asier García Pérez</b> . Bootsted by <b>MusicXMatch API</b>. More proyects in: <span><a
+                        href="https://github.com/AsierGarper">Github link. </a></span></i>If you want more apps like
             this,
             <b>give me a job</b>. This is my profile: <span><a
                     href="https://www.linkedin.com/in/asiergarciaperez/">LinkedIn
                     link.</a></span></i></p>
+
+
+
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
