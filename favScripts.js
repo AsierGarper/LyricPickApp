@@ -32,19 +32,19 @@
         document.querySelector(".favSongInfo").innerHTML += `<hr>
                                     <div>
                                     <img class="songPicture" src="${element.image}" alt="imagenDemo">
-                                    <h3 class="title">${element.song}</h3>
                                     <h4 class="album"><i>${element.album}</i></h4>
-                                    <p class="lyrics">${element.lyrics}</p>
+                                    <h3 class="title">${element.song}</h3>
                                     <div class="favIcon">
                                     <i class="fas fa-heart heartIcon" style="color: ${favButtonColor};"'></i>
                                     </div>
                                     <div class="previewBottomDiv">
                                     <p>Song preview:</p>
                                     <audio controls>
-                                        <source src="${element.soundPreview}" type="audio/mpeg">
-                                        Your browser does not support the audio element.
+                                    <source src="${element.soundPreview}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
                                     </audio>
                                     </div>
+                                    <p class="lyrics">${element.lyrics}</p>
                                     </div>`;
 
     })
@@ -110,20 +110,3 @@
 
 //Para conseguir que la funcion showFavouritesList automaticamente segun se carga el favourites.html, debo crear una funcion anonima con la funcion showFavouritesList dentro.
 //Cuando javascript encuentra un parentesis como este (), siempre intenta ejecutarlo. En este caso hemos escrito ('funcion)()
-
-
-
-
-//----------------------------Javascript para implementar funcionalidad a elementos HTML--------------------------------------------------------
-
-/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
-function openNav() {
-    document.getElementById("mySidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-}
-
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-}

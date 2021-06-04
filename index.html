@@ -14,42 +14,18 @@
 <body>
     <header>
         <a href="index.html"><img class="logo" src="./logo1.gif" alt="logo"></a>
-
-        <div class="elementosSidebar">
-            <div id="mySidebar" class="sidebar">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="favourites.html">Favourites</a>
-                <a href="#">Sign In</a>
-                <a href="#">What we do</a>
-            </div>
-
-            <div id="main">
-                <button class="openbtn" onclick="openNav()">&#9776; </button>
-            </div>
+        <div class="favouritesButton">
+            <a class="myFavouritesLink" href="./favourites.html" style="text-decoration:none">My favourites</a>
         </div>
-
-        <nav>
-            <a href="./favourites.html">Favourites</a>
-            <a href="">Sign In</a>
-            <a href="">What we do</a>
-        </nav>
     </header>
 
     <main>
         <section class="formSection">
             <div class="lyricsPicker">
-                <!-- <h4>Search:</h4> -->
-                <!-- <form action="">
-                    <label for="artistField">Artist:</label><br>
-                    <input type="text" id="artistField"><br>
-                    <button id="searchImput">Pick your song</button>
-                </form> -->
                 <form action="">
-                    <!-- <label for="artistField">Find your artist:</label> -->
                     <img src="./FormTitle.jpg" alt="">
                     <input type="text" id="artistField" name="artistName" placeholder="Type your artist name...">
                     <input type="searchImput" id="searchImput" value="Search">
-                    <!-- <button id="searchImput">Pick your song</button> -->
                 </form>
             </div>
         </section>
@@ -57,47 +33,14 @@
 
 
         <section class="artistSection">
-            <!-- <h1 class="artistTitle">Prueba Band</h1>
-            <img src="./imagenDemo.jpg" alt="">
-            <p>Artist's albums: </p>
-            <p>Artist's fans: </p> -->
+
         </section>
 
         <section class="songSection">
             <div class="songResult">
                 <div class="songInfo">
                     <div>
-                        <!-- <img class="artistPicture" src="./imagenDemo.jpg" alt="imagenDemo">
-                        <h3 class="title">Titulo Cancion</h3>
-                        <h4 class="album"><i>Album</i></h4>
-                        <p class="lyrics">Lorem fistrum ese que llega no te digo trigo por no llamarte Rodrigor llevame
-                            al
-                            Va usté muy cargadoo al ataquerl diodeno no puedor a wan no te digo trigo por no llamarte
-                            Rodrigor
-                            te voy a borrar el cerito la caidita caballo blanco caballo negroorl de la pradera a peich.
-                            Pecador
-                            torpedo sexuarl te voy a borrar el cerito.
-    
-                            Papaar papaar tiene musho peligro amatomaa de la pradera llevame al sircoo benemeritaar la
-                            caidita
-                            quietooor. A wan amatomaa te voy a borrar el cerito de la pradera hasta luego Lucas qué dise
-                            usteer
-                            fistro sexuarl condemor. Diodenoo torpedo a gramenawer benemeritaar a wan. Lorem fistrum ese
-                            que
-                            llega no te digo trigo por no llamarte Rodrigor llevame al sircoo se calle ustée. Amatomaa
-                            jarl
-                            va</p>
-                        <div class="favIcon">
-                            <i class="fas fa-heart heartIcon" style="color: grey;"></i>
-                        </div>
-                        <div class="previewBottomDiv">
-                            <p>Song preview:</p>
-                            <audio controls>
-                                <source src="" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                            </audio>
-                        </div>
-                    </div> -->
+
                     </div>
                 </div>
 
@@ -118,10 +61,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!--Script de MusicXMatch-->
-
-    <!-- <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP"></script> -->
-    <!-- Este es el script que me piden instalar en MusicXMatch para visualizar la letra de canciones, pero no me funciona-->
     <script src="scripts.js"></script>
 </body>
 

@@ -1,5 +1,17 @@
 /*Para implementar a futuro, voy a crear funciones, que llame a cada cosa. El el formulario, el usuario podra introducir, artista, y buscar todas las canciones del artista (funcion buscarArtista). Luego, si quiere buscar artista, y que contenga X palabra en su canciones, funcion buscaArtistaPalabras, etc. Cada vez que se envie informacion, en base a la que se envie, llamar a una funcion u otra.*/
 
+// const queButton = document.querySelector("[name=Q]");
+// queButton.addEventListener("click", function () {
+//     document.getElementById("Q").play();
+// });
+
+// queButton.addEventListener("keydown", function (e) {
+//     if (e.key == 81) {
+//         document.getElementById("Q").play();
+//     }
+// });
+
+
 document.querySelector("#searchImput").addEventListener("click", function (e) {
     e.preventDefault(); //Esto es para evitar que la pagina recarge por defecto
     let pickedArtist = (document.querySelector("#artistField").value).replace(" ", "_"); //Metemos el replace, para sustituir espacios por barras bajas
@@ -22,9 +34,13 @@ document.querySelector("#searchImput").addEventListener("click", function (e) {
 
             //  
             document.querySelector(".artistSection").innerHTML += `<h1 class="artistTitle"><u><strong>${artist.artistName}</u></strong></h1>
-                <img class="artistPicture" src="${artist.artistPicture}" alt="">
+            <div class="spanArtistImage"><img class="artistPicture" src="${artist.artistPicture}" alt="">
+                <div class="spanArtistDiv">
                 <p>Artist's albums: ${artist.artistNbAlbum}</p>
-                <p>Artist's fans: ${artist.artistNbFan}</p>`
+                <article>Artist's fans: ${artist.artistNbFan}</article>
+                </div>
+                </div>`
+
             //Una vez conseguimos el artista principal que busca el usuario (artistData[0].name), realizamos una nueva llamada a la api, pidiendo su top canciones:
             axios.get(`https://api.deezer.com/search/track?q=${artistData[0].name}`)
                 .then(function (response2) {
@@ -71,7 +87,7 @@ document.querySelector("#searchImput").addEventListener("click", function (e) {
                                                             let imagenCancion = songInfoClassPosition.querySelector("img").src;
                                                             let tituloCancion = songInfoClassPosition.querySelector("h3").innerHTML;
                                                             let tituloAlbumCancion = songInfoClassPosition.querySelector("h4").innerHTML;
-                                                            let letraCancion = songInfoClassPosition.querySelector("p").innerHTML;
+                                                            let letraCancion = songInfoClassPosition.querySelector(".lyrics").innerHTML;
                                                             let sonidoCancion = songInfoClassPosition.querySelector("source").src;
                                                             console.log(songInfoClassPosition.querySelector("source").src);
                                                             console.log(songInfoClassPosition.querySelector("p").innerHTML);
@@ -180,52 +196,32 @@ function paintInHTMLyricsSong(song) {
 
     document.querySelector(".songInfo").innerHTML += `<hr>
                                     <div>
-                                    <img class="songPicture" src="${song["songPicture"]}" alt="imagenDemo">
-                                    <h3 class="title">${song["songTitle"]}</h3>
+                                     <img class="songPicture" src="${song["songPicture"]}" alt="imagenDemo">
                                     <h4 class="album"><i>${song["songAlbum"]}</i></h4>
-                                    <p class="lyrics">${song.songLyrics}</p>
+                                    <h3 class="title">${song["songTitle"]}</h3>
                                     <div class="favIcon">
                                     <i class="fas fa-heart heartIcon" style="color: ${favButtonColor};"'></i>
                                     </div>
                                     <div class="previewBottomDiv">
                                     <p>Song preview:</p>
                                     <audio controls>
-                                        <source src="${song["songPreview"]}" type="audio/mpeg">
-                                        Your browser does not support the audio element.
+                                    <source src="${song["songPreview"]}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
                                     </audio>
                                     </div>
+                                    <p class="lyrics">${song.songLyrics}</p>
                                     </div>`;
 
 }
 
 
-
-//----------------------------Javascript para implementar funcionalidad a elementos HTML--------------------------------------------------------
-
-/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
-function openNav() {
-    document.getElementById("mySidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-}
-
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-}
-
-
-//-------------------------------Boton Favoritos------------------------------Hay que crear dos funciones, usando como comprobador, el estado del color del corazon. Si esta rojo y se clicka, fucion aniadir a favoritos, que anada a la lista de favoritos todo. Lo mismo cuando este en gris, funcion quitar de favoritos.
+//-------------------------------Boton Favoritos------------------------------.
 
 function favouritesFunction() {
-    // document.querySelector(".heartIcon").addEventListener("click", function(){
     if (document.querySelector(".heartIcon").style.color == "grey") {
         document.querySelector(".heartIcon").style.color = "red"
-        //Aqui, meter todo lo referente a guardar datos a favoritos
+
     } else if (document.querySelector(".heartIcon").style.color == "red") {
         document.querySelector(".heartIcon").style.color = "grey"
-        //Aqui, meter todo lo referente a guardar datos a favoritos
-
     }
-    // })
 }
